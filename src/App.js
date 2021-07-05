@@ -9,14 +9,14 @@ import {
   ListGroup,
   ListGroupItem,
 } from "react-bootstrap";
-import axios from 'axios';
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
-    }
+      data: [],
+    };
   }
 
   reloadData() {
@@ -24,7 +24,7 @@ class App extends Component {
       this.setState({
         data: res.data,
       });
-    })
+    });
   }
 
   componentDidMount() {
@@ -36,7 +36,8 @@ class App extends Component {
       <div>
         <Container>
           <Row>
-            <Col>
+            <Col md={4}>
+              <h1>Tambah / Edit Data Karyawan</h1>
               <Form>
                 <Form.Group className="mb-3">
                   <Form.Label>Nama Karyawan</Form.Label>
@@ -68,28 +69,25 @@ class App extends Component {
               </Form>
             </Col>
 
-            <Col>
-              {this.state.data.map((data,index) => {
+            <Col md={8}>
+              {this.state.data.map((data, index) => {
                 return (
-                  <div key={index}>
-                  <Card style={{ width: "18rem" }}>
-                  <Card.Body>
-                    <Card.Title>{data.nama_karyawan}</Card.Title>
-                  </Card.Body>
-                  <ListGroup className="list-group-flush">
-                    <ListGroupItem>{data.jabatan}</ListGroupItem>
-                    <ListGroupItem>{data.jenis_kelamin}</ListGroupItem>
-                    <ListGroupItem>{data.jabatan}</ListGroupItem>
-                  </ListGroup>
-                  <Card.Body>
-                    <Card.Link href="#">Hapus</Card.Link>
-                    <Card.Link href="#">Edit</Card.Link>
-                  </Card.Body>
-                </Card>
-                </div>
+                  <Card style={{ width: "16rem" }} key={index} className="mx-2">
+                    <Card.Body>
+                      <Card.Title>{data.nama_karyawan}</Card.Title>
+                    </Card.Body>
+                    <ListGroup className="list-group-flush">
+                      <ListGroupItem>{data.jabatan}</ListGroupItem>
+                      <ListGroupItem>{data.jenis_kelamin}</ListGroupItem>
+                      <ListGroupItem>{data.jabatan}</ListGroupItem>
+                    </ListGroup>
+                    <Card.Body>
+                      <Card.Link href="#">Hapus</Card.Link>
+                      <Card.Link href="#">Edit</Card.Link>
+                    </Card.Body>
+                  </Card>
                 );
               })}
-              
             </Col>
           </Row>
         </Container>
